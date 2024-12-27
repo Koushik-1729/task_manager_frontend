@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-// Task Dashboard Component
 const TaskDashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  // Use the API base URL based on the environment
   const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8080"; // Fallback for local development
 
   useEffect(() => {
@@ -89,7 +87,6 @@ const TaskDashboard = () => {
   );
 };
 
-// Add Task Form
 const AddTaskForm = ({ onAdd }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -129,7 +126,6 @@ const AddTaskForm = ({ onAdd }) => {
   );
 };
 
-// Edit Task Form
 const EditTaskForm = ({ task, onSave, onCancel }) => {
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
@@ -175,7 +171,6 @@ const EditTaskForm = ({ task, onSave, onCancel }) => {
   );
 };
 
-// Task List
 const TaskList = ({ tasks, onEdit, onDelete }) => {
   return (
     <div className="grid gap-4">
