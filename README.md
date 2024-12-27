@@ -32,15 +32,19 @@ This is a full-stack web application enabling users to manage tasks through CRUD
    ```bash
    cd task_manager_backend
    npm install
-3.Start Backend server
-```bash
-    npm start
-4.Install dependencies for the front-end:
-```bash
+3. start backend:
+   ```bash
+   npm start
+4. Install dependencies for the front-end:
+   ```bash
      cd ../task_manager_frontend
      npm install
-5.Start the front-end application:
-npm start
+5. start frontend:
+   ```bash
+   npm start
+6. Live Demo Links
+   ```bash
+   forntend link:https://task-manager-frontend-6b94.vercel.app/
 
 
 
