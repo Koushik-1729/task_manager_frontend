@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import TaskDashborad from "../../task-manager-frontend/src/context/TaskDashboard";
+import TaskDashborad from "./context/TaskDashboard";
 function App() {
   return (
     <>
