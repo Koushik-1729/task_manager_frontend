@@ -44,7 +44,7 @@ This is a full-stack web application enabling users to manage tasks through CRUD
    npm start
 6. ## Live Demo Links
 - **Front-End**: [Task Manager Frontend](https://task-manager-frontend-6b94.vercel.app/)
-- **Back-End**: [Task Manager Backend]((https://task-manager-backend-roky.onrender.com/tasks))*
+- **Back-End**: [Task Manager Backend](https://task-manager-backend-roky.onrender.com/tasks)
 
 
 
