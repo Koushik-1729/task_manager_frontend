@@ -7,7 +7,8 @@ const TaskDashboard = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  const API_BASE_URL = "http://localhost:5000"; // Backend API URL
+  // Use the API base URL based on the environment
+  const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8080"; // Fallback for local development
 
   useEffect(() => {
     fetchTasks();
@@ -33,34 +34,34 @@ const TaskDashboard = () => {
 
   const handleEditTask = async (updatedTask) => {
     try {
-        console.log('Updated Task:', updatedTask); // To inspect the updated task
-        if (!updatedTask._id) {
-            console.error("Task ID is missing!"); // Check if the ID is missing
-            return;
-        }
-        const response = await axios.put(`${API_BASE_URL}/tasks/${updatedTask._id}`, updatedTask);
-        setTasks(tasks.map((task) => (task._id === updatedTask._id ? response.data : task)));
-        setIsEditing(false);
-        setSelectedTask(null);
+      if (!updatedTask._id) {
+        console.error("Task ID is missing!");
+        return;
+      }
+      const response = await axios.put(`${API_BASE_URL}/tasks/${updatedTask._id}`, updatedTask);
+      setTasks(tasks.map((task) => (task._id === updatedTask._id ? response.data : task)));
+      setIsEditing(false);
+      setSelectedTask(null);
     } catch (error) {
-        console.error("Error editing task:", error);
+      console.error("Error editing task:", error);
     }
-};
+  };
 
-const handleDeleteTask = async (taskId) => {
-  if (!taskId) {
-    console.error('Task ID is missing');
-    return;
-  }
+  const handleDeleteTask = async (taskId) => {
+    if (!taskId) {
+      console.error("Task ID is missing");
+      return;
+    }
 
-  try {
-    const response = await axios.delete(`http://localhost:5000/tasks/${taskId}`);
-    console.log('Task deleted:', response.data);
-    fetchTasks(); 
-  } catch (error) {
-    console.error('Error deleting task:', error);
-  }
-};
+    try {
+      const response = await axios.delete(`${API_BASE_URL}/tasks/${taskId}`);
+      console.log("Task deleted:", response.data);
+      fetchTasks(); 
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold mb-4">Task Dashboard</h1>
@@ -190,9 +191,7 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
             Edit
           </button>
           <button
-          
-            onClick={() =>{ console.log("Deleting task with ID:", task._id);
-               onDelete(task._id)}}
+            onClick={() => onDelete(task._id)}
             className="btn btn-danger"
           >
             Delete
